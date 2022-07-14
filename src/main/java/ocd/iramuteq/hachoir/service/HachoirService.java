@@ -1,11 +1,9 @@
 package ocd.iramuteq.hachoir.service;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.IOException;
 
 public interface HachoirService {
 
-	int write(FileInputStream 	inputFile
-			, FileOutputStream 	outputFile);
+	int write(String source, String destination) throws IOException;
 
 }
