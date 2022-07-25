@@ -25,10 +25,10 @@ public class Phrase {
         LOG.info("DEB add "+line);
 		int nbOutputs = 0;
 		if (empty && Character.isUpperCase(line.charAt(0))) {
+			monoPhrase(" ");
 			if (compteur == 0) {
 				monoPhrase("**** var1_mod"+compteur ++);											
-			} else {
-//				monoPhrase("\n");
+			} else {//				
 				monoPhrase("-*var1_mod"+compteur ++);							
 			}
 		}
