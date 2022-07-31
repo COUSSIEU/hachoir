@@ -1,24 +1,24 @@
  
-**** var1_mod0
+**** *var1_mod0
 Texte de l'appel du 18 juin 1940.
  Les chefs qui, depuis de nombreuses années, sont à la tête des armées françaises, ont formé un gouvernement.
  Ce gouvernement, alléguant la défaite de nos armées, s'est mis en rapport avec l'ennemi pour cesser le combat.
  
--*var1_mod1
+-*paragraphe_1
 Certes, nous avons été, nous sommes submergés par la force mécanique, terrestre et aérienne de l'ennemi.
  
--*var1_mod2
+-*paragraphe_2
 Infiniment plus que leur nombre, ce sont les chars, les avions, la tactique des Allemands qui nous font reculer.
  Ce sont les chars, les avions, la tactique des Allemands qui ont surpris nos chefs au point de les amener là où ils en sont aujourd’hui.
  
--*var1_mod3
+-*paragraphe_3
 Mais le dernier mot est-il dit ? L'espérance doit-elle disparaître ? La défaite est-elle définitive ? Non !
  
--*var1_mod4
+-*paragraphe_4
 Croyez-moi, moi qui vous parle en connaissance de cause et vous dis que rien n’est perdu pour la France.
  Les mêmes moyens qui nous ont vaincus peuvent faire venir un jour la victoire.
  
--*var1_mod5
+-*paragraphe_5
 Car la France n'est pas seule !
  Elle n'est pas seule !
  Elle n'est pas seule !
@@ -26,7 +26,7 @@ Car la France n'est pas seule !
  Elle peut faire bloc avec l'Empire britannique qui tient la mer et continue la lutte.
  Elle peut, comme l'Angleterre, utiliser sans limites l'immense industrie des Etats-Unis.
  
--*var1_mod6
+-*paragraphe_6
 Cette guerre n'est pas limitée au territoire de notre malheureux pays.
  Cette guerre n'est pas tranchée par la bataille de France.
  Cette guerre est une guerre mondiale.
@@ -34,12 +34,12 @@ Cette guerre n'est pas limitée au territoire de notre malheureux pays.
  Foudroyés aujourd'hui par la force mécanique, nous pourrons vaincre dans l'avenir par une force mécanique supérieure.
  Le destin du monde est là.
  
--*var1_mod7
+-*paragraphe_7
 Moi, général de Gaulle, actuellement à Londres, j'invite les officiers et les soldats français qui se trouvent en territoire britannique ou qui viendraient à s'y trouver, avec leurs armes ou sans leurs armes, j'invite les ingénieurs et les ouvriers spécialisés des industries d'armement qui se trouvent en territoire britannique ou qui viendraient à s'y trouver, à se mettre en rapport avec moi.
  
--*var1_mod8
+-*paragraphe_8
 Quoi qu'il arrive, la Flamme de la résistance française ne doit pas s'éteindre et ne s'éteindra pas.
  
--*var1_mod9
+-*paragraphe_9
 Demain, comme aujourd'hui, je parlerai à la radio de Londres.
  

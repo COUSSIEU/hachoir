@@ -16,6 +16,8 @@ public class HachoirCommandLineRunner implements CommandLineRunner {
 	private static String OUTPUT = "src/main/resources/decoupe.txt";
 
 	private final HachoirService hachoirService;
+	private String input = INPUT;
+	private String output = OUTPUT;
 
 	public HachoirCommandLineRunner(HachoirService hachoirService) {
 	    LOG.info("STARTING : command line runner");
@@ -24,10 +26,19 @@ public class HachoirCommandLineRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+        switch (args.length) {
+        	case 2: {
+        		input 	= args[0];
+        		output 	= args[1];
+        		break;
+        	}
+        	case 1: {
+        		input 	= args[0];
+        		break;
+        	}
+        	default:
+        }
         LOG.info("EXECUTING : command line runner");
-		final String input = INPUT;
-		final String output = OUTPUT;
-
 		int count 	= hachoirService.write(input, output);  
 		String msg 	= String.format("count = %s", count);
 		System.out.println(msg);
