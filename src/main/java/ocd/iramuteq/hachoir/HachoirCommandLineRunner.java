@@ -12,7 +12,7 @@ public class HachoirCommandLineRunner implements CommandLineRunner {
 	
     private static Logger LOG = LoggerFactory.getLogger(HachoirCommandLineRunner.class);
 
-	private static String INPUT  = "src/main/resources/appel18juin.txt";
+	private static String INPUT  = "src/main/resources/La-Porte-du-fond.txt";
 	private static String OUTPUT = "src/main/resources/decoupe.txt";
 
 	private final HachoirService hachoirService;

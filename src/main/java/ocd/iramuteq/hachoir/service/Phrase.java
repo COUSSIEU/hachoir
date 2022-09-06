@@ -3,15 +3,15 @@ package ocd.iramuteq.hachoir.service;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Phrase {
     private static final String TEXTE = "**** *var1_mod";
 
 	private static final String PARAGRAPHE = "-*paragraphe_";
 
-//	private static Logger LOG = LoggerFactory.getLogger(Phrase.class);
+	private static Logger LOG = LoggerFactory.getLogger(Phrase.class);
     
     private String 			line;
     private String[] 		phrases;
@@ -25,25 +25,28 @@ public class Phrase {
 	}
 
 	public int add(String line) throws IOException {
-//        LOG.info("DEB add "+line);
+        LOG.info("DEB add "+line);
 		int nbOutputs = 0;
-		if (empty && Character.isUpperCase(line.charAt(0))) {
-			monoPhrase(" ");
-			if (compteur == 0) {
-				monoPhrase(TEXTE+compteur ++);											
-			} else {//				
-				monoPhrase(PARAGRAPHE+compteur ++);							
+		if (line.length() == 0) {
+			ecrire();			
+		} else {
+			if (empty) {
+				monoPhrase(" ");
+				if (Character.isUpperCase(line.charAt(0))) {
+					final String prefixe = compteur == 0 ? TEXTE : PARAGRAPHE;
+					monoPhrase(prefixe+compteur ++);											
+				}
 			}
+			if (line.contains("!")) {
+				nbPhrases = compterPhrases(line, "!");
+				nbOutputs = nbPhrases > 0 ?  multiPhrases('!') : monoPhrase(line);   
+			 } else if (line.contains(".")) {
+				nbPhrases = compterPhrases(line, "\\.");
+				nbOutputs = nbPhrases > 0 ?  multiPhrases('.') : monoPhrase(line);   
+			 } else {
+			     stocker(line);
+			 }
 		}
-		if (line.contains("!")) {
-			nbPhrases = compterPhrases(line, "!");
-			nbOutputs = nbPhrases > 0 ?  multiPhrases('!') : monoPhrase(line);   
-		 } else if (line.contains(".")) {
-			nbPhrases = compterPhrases(line, "\\.");
-			nbOutputs = nbPhrases > 0 ?  multiPhrases('.') : monoPhrase(line);   
-		 } else {
-		     stocker(line);
-		 }
 //        LOG.info("FIN add "+nbOutputs);
 		return nbOutputs;
 	}
