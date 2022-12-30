@@ -40,9 +40,9 @@ class PhraseTest {
 	 */
 	@Test
 	void testCompterPhrases() {
-		String line 	= null;
-		String splitter = null;
-		int expected 	= 0;// LATINOS;
+		String line 	= "1.2.3";
+		String splitter = "\\.";
+		int expected 	= 3;
 		int obtained	= sut.compterPhrases(line, splitter);
 		assertEquals(expected, obtained);
 	}
@@ -54,7 +54,7 @@ class PhraseTest {
 	@Test
 	void testMonoPhrase() throws IOException {
 		String line 	= null;
-		int expected 	= 0;// LATINOS;
+		int expected 	= 1;
 		int obtained	= sut.monoPhrase(line);
 		assertEquals(expected, obtained);
 	}
@@ -91,7 +91,7 @@ class PhraseTest {
 	 */
 	@Test
 	void testIsPhraseInachevee() throws IOException {
-		String phrasePasFinie 	= "PAS FINIE";
+		String phrasePasFinie 	= "Finie. PAS FINIE";
 		sut.add(phrasePasFinie);
 		boolean obtained	= sut.isPhraseInachevee(0);
 		assertTrue(obtained);
@@ -104,7 +104,7 @@ class PhraseTest {
 	@Test
 	void testEcrireComplet() throws IOException {
 		String line 	= null;
-		int expected 	= 0;// LATINOS;
+		int expected 	= 1;// LATINOS;
 		int obtained	= sut.ecrireComplet(line, 's');
 		assertEquals(expected, obtained);
 	}
@@ -115,7 +115,7 @@ class PhraseTest {
 	 */
 	@Test
 	void testEcrire() throws IOException {
-		int expected 	= 0;// LATINOS;
+		int expected 	= 1;
 		int obtained	= sut.ecrire();
 		assertEquals(expected, obtained);
 	}

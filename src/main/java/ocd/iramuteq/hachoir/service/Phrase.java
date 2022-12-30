@@ -7,18 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Phrase {
-    private static final String TEXTE = "**** *var1_mod";
-
-	private static final String PARAGRAPHE = "-*paragraphe_";
-
-	private static Logger LOG = LoggerFactory.getLogger(Phrase.class);
+    private static Logger LOG = LoggerFactory.getLogger(Phrase.class);
     
     private String 			line;
     private String[] 		phrases;
     private int 			nbPhrases;
 	private BufferedWriter 	output;
 	private boolean 		empty = true;
-	private int 			compteur = 0;
+	private Injections		injection = new Injections();
     
 	public Phrase(BufferedWriter bw) {
 		this.output = bw;
@@ -26,28 +22,30 @@ public class Phrase {
 
 	public int add(String line) throws IOException {
         LOG.info("DEB add "+line);
-		int nbOutputs = 0;
 		if (line.length() == 0) {
-			ecrire();			
-		} else {
-			if (empty) {
-				monoPhrase(" ");
-				if (Character.isUpperCase(line.charAt(0))) {
-					final String prefixe = compteur == 0 ? TEXTE : PARAGRAPHE;
-					monoPhrase(prefixe+compteur ++);											
-				}
+			ecrire();	
+			return 0;
+		} 
+		if (empty) {
+			monoPhrase(" ");
+			if (Character.isUpperCase(line.charAt(0))) {
+				monoPhrase(injection.toString());											
 			}
-			if (line.contains("!")) {
-				nbPhrases = compterPhrases(line, "!");
-				nbOutputs = nbPhrases > 0 ?  multiPhrases('!') : monoPhrase(line);   
-			 } else if (line.contains(".")) {
-				nbPhrases = compterPhrases(line, "\\.");
-				nbOutputs = nbPhrases > 0 ?  multiPhrases('.') : monoPhrase(line);   
-			 } else {
-			     stocker(line);
-			 }
 		}
-//        LOG.info("FIN add "+nbOutputs);
+		return process(line);
+	}
+
+	protected int process(String line) throws IOException {
+		int nbOutputs = 0;
+		if (line.contains("!")) {
+			nbPhrases = compterPhrases(line, "!");
+			nbOutputs = nbPhrases > 0 ?  multiPhrases('!') : monoPhrase(line);   
+		 } else if (line.contains(".")) {
+			nbPhrases = compterPhrases(line, "\\.");
+			nbOutputs = nbPhrases > 0 ?  multiPhrases('.') : monoPhrase(line);   
+		 } else {
+		     stocker(line);
+		 }
 		return nbOutputs;
 	}
 
