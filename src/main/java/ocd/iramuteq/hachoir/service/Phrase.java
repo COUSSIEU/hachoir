@@ -8,25 +8,31 @@ import org.slf4j.LoggerFactory;
 
 public class Phrase {
     private static Logger LOG = LoggerFactory.getLogger(Phrase.class);
+
+    private final BufferedWriter 	stockage;
+	private final Injections		injection;
     
     private String 			line;
     private String[] 		phrases;
     private int 			nbPhrases;
-	private BufferedWriter 	output;
 	private boolean 		empty = true;
-	private Injections		injection = new Injections();
     
-	public Phrase(BufferedWriter bw) {
-		this.output = bw;
+	public Phrase(BufferedWriter stockage) {
+		this(stockage, new Injections());
+	}
+
+	public Phrase(BufferedWriter stockage, Injections injection) {
+		this.stockage = stockage;
+		this.injection = injection;
 	}
 
 	public int add(String line) throws IOException {
         LOG.info("DEB add "+line);
 		if (line.length() == 0) {
-			ecrire();	
+			aLaLigne();	
 			return 0;
 		} 
-		if (empty) {
+		if (this.injection != null && empty) {
 			monoPhrase(" ");
 			if (Character.isUpperCase(line.charAt(0))) {
 				monoPhrase(injection.toString());											
@@ -56,8 +62,8 @@ public class Phrase {
 	}
 
 	protected int monoPhrase(String line) throws IOException {
-		output.append(line);
-		return ecrire();
+		stockage.append(line);
+		return aLaLigne();
 	}
 
 	protected int multiPhrases(char terminateur) throws IOException {
@@ -73,7 +79,7 @@ public class Phrase {
 	}
 
 	protected void stocker(String phrasePasFinie) throws IOException {
-		output.append(phrasePasFinie);
+		stockage.append(phrasePasFinie);
 		empty = false;
 	}
 
@@ -83,14 +89,14 @@ public class Phrase {
 	}
 
 	protected int ecrireComplet(String phrase, char terminateur) throws IOException {
-		output.append(phrase).append(terminateur);  
-		return ecrire();
+		stockage.append(phrase).append(terminateur);  
+		return aLaLigne();
 	}
 
-	protected int ecrire() throws IOException {
+	protected int aLaLigne() throws IOException {
 //        LOG.info("MIN ecrire ");
-		output.flush();
-		output.newLine();
+		stockage.flush();
+		stockage.newLine();
 		empty = true;
 		return 1;
 	}
